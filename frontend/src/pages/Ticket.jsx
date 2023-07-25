@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { closeTicket, getTicket } from "../features/tickets/ticketSlice";
 import Spinner from "../components/Spinner";
 import BackButton from "../components/BackButton";
-import { getNotes } from "../features/notes/noteSlice";
+import { createNote, getNotes } from "../features/notes/noteSlice";
 import NoteItem from "../components/NoteItem";
 import { FaPlus } from "react-icons/fa";
 
@@ -58,7 +58,7 @@ const Ticket = () => {
   //Create Note
   const onNoteSubmit = (e) => {
     e.preventDefault();
-
+    dispatch(createNote({ noteText, ticketId }));
     closeModal();
   };
 
@@ -103,7 +103,7 @@ const Ticket = () => {
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
-        style={customStyles}
+        style={customStyles.content}
         contentLabel="Add Note"
       >
         <h2>Add Note</h2>
